@@ -10,10 +10,9 @@ import Tab3 from './TabsOld/Tab3'
 const App = () => {
   const [loadingContent, setLoadingContent] = useState(false)
   const [openSubMenu, setOpenSubMenu] = useState(false)
-  const [onlyOnce, setOnlyOnce] = useState(true)
+  const [currentTab, setCurrentTab] = useState(1)
   const loadContent = () => {
     setLoadingContent(true)
-    setOnlyOnce(false)
     setTimeout(() => { setLoadingContent(false) }, 3000)
   }
   const closeSubMenu = () => {
@@ -49,9 +48,12 @@ const App = () => {
           <Tab1 />,
           <Tab2 />,
           <Tab3 />,
+          <Text>{currentTab}</Text>
         ]}
         tabTitles={['Tab1', 'Tab2', 'Tab3', 'Tab4', 'Tab5', 'Tab6', 'Tab7']}
         defaultTab={1}
+        currentTab={currentTab}
+        setCurrentTab={setCurrentTab}
         footerBody={
           <Text>Hi</Text>
         }

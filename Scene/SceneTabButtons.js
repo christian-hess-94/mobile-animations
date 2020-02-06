@@ -1,5 +1,5 @@
 import React from 'react'
-import { View, Text, ScrollView } from 'react-native'
+import { View, Text, ScrollView, TouchableOpacity } from 'react-native'
 
 const SceneTabButtons = props => {
     let {
@@ -15,7 +15,8 @@ const SceneTabButtons = props => {
         hasFooter,
         loadingContent,
         hasTabs,
-        footerBody
+        footerBody,
+        setCurrentTab
     } = props
     let minimumTabs = 6
     return (
@@ -24,12 +25,15 @@ const SceneTabButtons = props => {
                 {
                     tabTitles.map(
                         (tabTitle, tabNumber) =>
-                            <Text
-                                key={tabNumber}
-                                style={{ flex: 1, margin: 20, textAlign: 'center' }}
-                            >
-                                {tabTitle}
-                            </Text>
+                            <TouchableOpacity onPress={() => setCurrentTab(tabNumber + 1)}>
+
+                                <Text
+                                    key={tabNumber}
+                                    style={{ flex: 1, margin: 20, textAlign: 'center' }}
+                                >
+                                    {tabTitle}
+                                </Text>
+                            </TouchableOpacity>
                     )
                 }
             </View>
