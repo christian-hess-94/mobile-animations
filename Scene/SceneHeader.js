@@ -15,7 +15,8 @@ const SceneHeader = props => {
         headerShouldAppear,
         hasHeader,
         hasSubMenu,
-        loadingContent
+        loadingContent,
+        sceneTitle
     } = props
 
     const [headerHeight, setHeaderHeight] = useState(0)
@@ -53,7 +54,7 @@ const SceneHeader = props => {
                         </Row>
                     </Column>
                     <Column flex={6}>
-                        <Text style={{ marginVertical: 20 }}>Header</Text>
+                        <Text style={{ marginVertical: 20 }}>{sceneTitle}</Text>
                     </Column>
                     <Column flex={2}>
                         <TouchableOpacity onPress={() => reverseAnimation(headerAppearAnimation, setHeaderShouldAppear)}>

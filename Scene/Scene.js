@@ -5,15 +5,15 @@ import SceneHeader from './SceneHeader'
 import SceneBackdrop from './SceneBackdrop'
 import SceneTabButtons from './SceneTabButtons'
 import SceneDrawer from './SceneDrawer'
+import SceneTabs from './SceneTabs'
 
 const Scene = props => {
-    let { hasHeader, hasFooter, hasTabs, hasSubMenu, sceneBody, loadingContent, tabs } = props
+    let { hasHeader, hasFooter, hasTabs, hasSubMenu, sceneBody, loadingContent, tabs, header } = props
     let duration = 500
 
     const [loadingShouldAppear, setLoadingShouldAppear] = useState(false)
     const [loadingAppearAnimation] = useState(new Animated.Value(0))
 
-    const [contentShouldAppear, setContentShouldAppear] = useState(true)
     const [contentAppearAnimation] = useState(new Animated.Value(0))
 
     const [drawerShouldAppear, setDrawerShouldAppear] = useState(false)
@@ -34,16 +34,20 @@ const Scene = props => {
     const [tabsShouldAppear, setTabsShouldAppear] = useState(true)
     const [tabsAppearAnimation] = useState(new Animated.Value(0))
 
-    const startAnimation = (animation, set, duration2) => {
+    const [vanishTab, setVanishTab] = useState(1)//1, 0
+    const [tabAnimation, setTabAnimation] = useState(new Animated.Value(0))
+
+    const [sceneTitle, setSceneTitle] = useState(header)
+    const startAnimation = (animation, set, duration2, to) => {
         !!set && set(true)
         Animated.timing(animation, {
-            toValue: 1,
+            toValue: to ? to : 1,
             duration: duration2 ? duration2 : duration
         }).start()
     }
-    const reverseAnimation = (animation, set, duration2) => {
+    const reverseAnimation = (animation, set, duration2, to) => {
         Animated.timing(animation, {
-            toValue: 0,
+            toValue: to ? to : 0,
             duration: duration2 ? duration2 : duration
         }).start()
         setTimeout(() => {
@@ -72,18 +76,27 @@ const Scene = props => {
                     footerAppearAnimation={footerAppearAnimation}
                     tabsAppearAnimation={tabsAppearAnimation}
                     subMenuOpenAnimation={subMenuOpenAnimation}
+                    tabAnimation={tabAnimation}
+
+
                     drawerShouldAppear={drawerShouldAppear}
                     headerShouldAppear={headerShouldAppear}
                     subMenuShouldAppear={subMenuShouldAppear}
                     subMenuShouldOpen={subMenuShouldOpen}
                     footerShouldAppear={footerShouldAppear}
                     tabsShouldAppear={tabsShouldAppear}
+                    vanishTab={vanishTab}
+                    sceneTitle={sceneTitle}
+
                     setDrawerShouldAppear={setDrawerShouldAppear}
                     setHeaderShouldAppear={setHeaderShouldAppear}
                     setSubMenuShouldAppear={setSubMenuShouldAppear}
                     setSubMenuShouldOpen={setSubMenuShouldOpen}
                     setFooterShouldAppear={setFooterShouldAppear}
                     setTabsShouldAppear={setTabsShouldAppear}
+                    setVanishTab={setVanishTab}
+                    setTabAnimation={setTabAnimation}
+                    setSceneTitle={setSceneTitle}
                 />
             }
             {
@@ -111,34 +124,64 @@ const Scene = props => {
                         />
                     </Animated.View>
                     :
-                    hasTabs ?
-                        <ScrollView style={{ marginHorizontal: 20, flex: 10 }}>
-                            <View style={{ height: 10 }} />
-                            {tabs.map(tab => tab)}
-                            <View style={{ height: 10 }} />
-                        </ScrollView>
-                        :
-                        <Animated.View style={{
-                            flex: 1,
-                            opacity: contentAppearAnimation.interpolate({
-                                inputRange: [0, 1],
-                                outputRange: [1, 0]
-                            }),
-                            transform: [
-                                {
-                                    scale: contentAppearAnimation.interpolate({
-                                        inputRange: [0, 1],
-                                        outputRange: [1, 0.5]
-                                    })
-                                }
-                            ]
-                        }}>
-                            <ScrollView style={{ marginHorizontal: 20, flex: 10 }}>
-                                <View style={{ height: 10 }} />
-                                {sceneBody}
-                                <View style={{ height: 10 }} />
-                            </ScrollView>
-                        </Animated.View>
+                    <Animated.View style={{
+                        flex: 1,
+                        opacity: contentAppearAnimation.interpolate({
+                            inputRange: [0, 1],
+                            outputRange: [1, 0]
+                        }),
+                        transform: [
+                            {
+                                scale: contentAppearAnimation.interpolate({
+                                    inputRange: [0, 1],
+                                    outputRange: [1, 0.5]
+                                })
+                            }
+                        ]
+                    }}>
+                        {
+                            hasTabs ?
+                                <SceneTabs {...props}
+
+                                    startAnimation={startAnimation}
+                                    reverseAnimation={reverseAnimation}
+                                    drawerAppearAnimation={drawerAppearAnimation}
+                                    headerAppearAnimation={headerAppearAnimation}
+                                    subMenuAppearAnimation={subMenuAppearAnimation}
+                                    footerAppearAnimation={footerAppearAnimation}
+                                    tabsAppearAnimation={tabsAppearAnimation}
+                                    subMenuOpenAnimation={subMenuOpenAnimation}
+                                    tabAnimation={tabAnimation}
+
+
+                                    drawerShouldAppear={drawerShouldAppear}
+                                    headerShouldAppear={headerShouldAppear}
+                                    subMenuShouldAppear={subMenuShouldAppear}
+                                    subMenuShouldOpen={subMenuShouldOpen}
+                                    footerShouldAppear={footerShouldAppear}
+                                    tabsShouldAppear={tabsShouldAppear}
+                                    vanishTab={vanishTab}
+                                    sceneTitle={sceneTitle}
+
+                                    setDrawerShouldAppear={setDrawerShouldAppear}
+                                    setHeaderShouldAppear={setHeaderShouldAppear}
+                                    setSubMenuShouldAppear={setSubMenuShouldAppear}
+                                    setSubMenuShouldOpen={setSubMenuShouldOpen}
+                                    setFooterShouldAppear={setFooterShouldAppear}
+                                    setTabsShouldAppear={setTabsShouldAppear}
+                                    setVanishTab={setVanishTab}
+                                    setTabAnimation={setTabAnimation}
+                                    setSceneTitle={setSceneTitle}
+                                />
+                                :
+                                <ScrollView style={{ marginHorizontal: 20, flex: 10 }}>
+                                    <View style={{ height: 10 }} />
+                                    {sceneBody}
+                                    <View style={{ height: 10 }} />
+                                </ScrollView>
+                        }
+
+                    </Animated.View>
             }
 
             {
@@ -153,18 +196,27 @@ const Scene = props => {
                     footerAppearAnimation={footerAppearAnimation}
                     tabsAppearAnimation={tabsAppearAnimation}
                     subMenuOpenAnimation={subMenuOpenAnimation}
+                    tabAnimation={tabAnimation}
+
+
                     drawerShouldAppear={drawerShouldAppear}
                     headerShouldAppear={headerShouldAppear}
                     subMenuShouldAppear={subMenuShouldAppear}
                     subMenuShouldOpen={subMenuShouldOpen}
                     footerShouldAppear={footerShouldAppear}
                     tabsShouldAppear={tabsShouldAppear}
+                    vanishTab={vanishTab}
+                    sceneTitle={sceneTitle}
+
                     setDrawerShouldAppear={setDrawerShouldAppear}
                     setHeaderShouldAppear={setHeaderShouldAppear}
                     setSubMenuShouldAppear={setSubMenuShouldAppear}
                     setSubMenuShouldOpen={setSubMenuShouldOpen}
                     setFooterShouldAppear={setFooterShouldAppear}
                     setTabsShouldAppear={setTabsShouldAppear}
+                    setVanishTab={setVanishTab}
+                    setTabAnimation={setTabAnimation}
+                    setSceneTitle={setSceneTitle}
                 />
             }
 
@@ -178,18 +230,27 @@ const Scene = props => {
                 footerAppearAnimation={footerAppearAnimation}
                 tabsAppearAnimation={tabsAppearAnimation}
                 subMenuOpenAnimation={subMenuOpenAnimation}
+                tabAnimation={tabAnimation}
+
+
                 drawerShouldAppear={drawerShouldAppear}
                 headerShouldAppear={headerShouldAppear}
                 subMenuShouldAppear={subMenuShouldAppear}
                 subMenuShouldOpen={subMenuShouldOpen}
                 footerShouldAppear={footerShouldAppear}
                 tabsShouldAppear={tabsShouldAppear}
+                vanishTab={vanishTab}
+                sceneTitle={sceneTitle}
+
                 setDrawerShouldAppear={setDrawerShouldAppear}
                 setHeaderShouldAppear={setHeaderShouldAppear}
                 setSubMenuShouldAppear={setSubMenuShouldAppear}
                 setSubMenuShouldOpen={setSubMenuShouldOpen}
                 setFooterShouldAppear={setFooterShouldAppear}
                 setTabsShouldAppear={setTabsShouldAppear}
+                setVanishTab={setVanishTab}
+                setTabAnimation={setTabAnimation}
+                setSceneTitle={setSceneTitle}
             />
 
         </SafeAreaView >

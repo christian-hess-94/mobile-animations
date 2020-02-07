@@ -10,7 +10,7 @@ import Tab3 from './TabsOld/Tab3'
 const App = () => {
   const [loadingContent, setLoadingContent] = useState(false)
   const [openSubMenu, setOpenSubMenu] = useState(false)
-  const [currentTab, setCurrentTab] = useState(1)
+  const [currentTab, setCurrentTab] = useState(0)
   const loadContent = () => {
     setLoadingContent(true)
     setTimeout(() => { setLoadingContent(false) }, 3000)
@@ -25,6 +25,7 @@ const App = () => {
       <Scene
         loadingContent={loadingContent}
         hasHeader
+        header='Título da página'
         hasSubMenu
         subMenuBody={
           <>
@@ -45,17 +46,20 @@ const App = () => {
         hasFooter
         hasTabs
         tabs={[
-          <Tab1 />,
-          <Tab2 />,
-          <Tab3 />,
-          <Text>{currentTab}</Text>
+          <Text>Aba de resumo</Text>,
+          <Text>Aba de Visitas</Text>,
+          <Text>Aba de Obras</Text>,
+          <Text>Aba de Fiscais</Text>,
+          <Text>Aba de Diárias</Text>,
+          // <Text>Tab7</Text>,
+          // <Text>Tab8</Text>,
+          // <Text>Tab9</Text>,
         ]}
-        tabTitles={['Tab1', 'Tab2', 'Tab3', 'Tab4', 'Tab5', 'Tab6', 'Tab7']}
-        defaultTab={1}
+        tabTitles={['Resumo', 'Visitas', 'Obras', 'Fiscais', 'Diárias', 'Detalhes', 'Outros']}
         currentTab={currentTab}
         setCurrentTab={setCurrentTab}
         footerBody={
-          <Text>Hi</Text>
+          <Text>{currentTab}</Text>
         }
         sceneBody={
           <>

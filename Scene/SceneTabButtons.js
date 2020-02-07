@@ -16,20 +16,58 @@ const SceneTabButtons = props => {
         loadingContent,
         hasTabs,
         footerBody,
-        setCurrentTab
+        setCurrentTab,
+        currentTab,
+        vanishTab,
+        setVanishTab,
+        tabAnimation,
+        setSceneTitle,
     } = props
     let minimumTabs = 6
+
+    const duration = 150
+    const setTab = (tabTitle, touchedTabNumber) => {
+        if (touchedTabNumber > currentTab) {
+            startAnimation(tabAnimation, undefined, duration, 1)
+            setTimeout(() => {
+                setVanishTab(0)
+                setCurrentTab(touchedTabNumber)
+                setSceneTitle(tabTitle)
+                startAnimation(tabAnimation, undefined, 10, -1)
+                setTimeout(() => {
+                    setVanishTab(1)
+                    reverseAnimation(tabAnimation, undefined, duration, 0)
+                }, duration)
+            }, duration)
+        } else if (touchedTabNumber < currentTab) {
+            startAnimation(tabAnimation, undefined, duration, -1)
+            setTimeout(() => {
+                setVanishTab(0)
+                setCurrentTab(touchedTabNumber)
+                setSceneTitle(tabTitle)
+                startAnimation(tabAnimation, undefined, 10, 1)
+                setTimeout(() => {
+                    setVanishTab(1)
+                    reverseAnimation(tabAnimation, undefined, duration, 0)
+                }, duration)
+            }, duration)
+        } else {
+            // setVanishTab('same')
+        }
+    }
     return (
         (tabTitles.length <= minimumTabs) ?
             <View style={{ flexDirection: 'row', backgroundColor: 'green', width: '100%' }}>
                 {
                     tabTitles.map(
                         (tabTitle, tabNumber) =>
-                            <TouchableOpacity onPress={() => setCurrentTab(tabNumber + 1)}>
-
+                            <TouchableOpacity
+                                style={{ flex: 1, marginHorizontal: 10, marginVertical: 20 }}
+                                key={tabNumber}
+                                onPress={() => setTab(tabTitle, tabNumber)}
+                            >
                                 <Text
-                                    key={tabNumber}
-                                    style={{ flex: 1, margin: 20, textAlign: 'center' }}
+                                    style={{ textAlign: 'center', fontSize: 20 - tabTitles.length, fontWeight: currentTab === tabNumber ? 'bold' : 'normal' }}
                                 >
                                     {tabTitle}
                                 </Text>
@@ -42,12 +80,16 @@ const SceneTabButtons = props => {
                 {
                     tabTitles.map(
                         (tabTitle, tabNumber) =>
-                            <Text
+                            <TouchableOpacity
                                 key={tabNumber}
-                                style={{ margin: 20, textAlign: 'center' }}
+                                onPress={() => setTab(tabTitle, tabNumber)}
                             >
-                                {tabTitle}
-                            </Text>
+                                <Text
+                                    style={{ marginHorizontal: 10, marginVertical: 20, textAlign: 'center', fontSize: 15, fontWeight: currentTab === tabNumber ? 'bold' : 'normal' }}
+                                >
+                                    {tabTitle}
+                                </Text>
+                            </TouchableOpacity>
                     )
                 }
             </ScrollView>
