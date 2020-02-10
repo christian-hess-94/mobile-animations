@@ -6,7 +6,9 @@ const FadeInView = (props) => {
         <>
             <Animated.View style={{
                 width: Dimensions.get('window').width,
-                backgroundColor: 'powderblue',
+                height: Dimensions.get('window').height - 100,
+
+                // backgroundColor: 'powderblue',
                 transform: [{
                     translateX: props.changeTabAnim.interpolate({
                         inputRange: [0, Dimensions.get('window').width],
@@ -15,11 +17,19 @@ const FadeInView = (props) => {
                 }],
             }}>
                 <Animated.View style={{
-                    height: props.revealPageContentAnim.interpolate({
+                    // transform: [
+                    //     {
+                    //         scale:
+                    //             props.revealTabContentAnim.interpolate({
+                    //                 inputRange: [0, 1],
+                    //                 outputRange: [0.6, 1]
+                    //             })
+                    //     }
+                    // ],
+                    opacity: props.revealTabContentAnim.interpolate({
                         inputRange: [0, 1],
-                        outputRange: [20, 100]
-                    }),
-                    opacity: props.revealPageContentAnim
+                        outputRange: [0.3, 1]
+                    })
                 }}>
                     {props.children}
                 </Animated.View>
@@ -30,7 +40,7 @@ const FadeInView = (props) => {
                             style={{ flex: 1 }}
                             onPress={() => props.fadeToPrevious()}>
                             <Animated.View style={{
-                                opacity: props.revealPageContentAnim,
+                                opacity: props.revealTabContentAnim,
                                 alignItems: 'center',
                                 padding: 20,
                                 backgroundColor: 'transparent'
@@ -44,7 +54,7 @@ const FadeInView = (props) => {
                         <TouchableOpacity
                             style={{ flex: 1 }}
                             onPress={() => props.supportButtonPress()}><Animated.View style={{
-                                opacity: props.revealPageContentAnim,
+                                opacity: props.revealTabContentAnim,
                                 alignItems: 'center',
                                 padding: 20,
                                 backgroundColor: 'lightgreen'
@@ -59,7 +69,7 @@ const FadeInView = (props) => {
                             style={{ flex: 1 }}
                             onPress={() => props.fadeToNext()}>
                             <Animated.View style={{
-                                opacity: props.revealPageContentAnim,
+                                opacity: props.revealTabContentAnim,
                                 alignItems: 'center',
                                 padding: 20,
                                 backgroundColor: 'transparent'

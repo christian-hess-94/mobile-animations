@@ -17,23 +17,24 @@ const SceneSubMenu = props => {
         loadingContent,
         subMenuBody,
         openSubMenu,
-        setOpenSubMenu
+        setOpenSubMenu,
+        subMenuTitleClosed,
+        subMenuTitleOpen
     } = props
 
     const [subMenuHeight, setSubMenuHeight] = useState(0)
     const [titleHeight, setTitleHeight] = useState(0)
+    const [onlyOnce, setOnlyOnce] = useState(true)
     // reverseAnimation(subMenuOpenAnimation, setSubMenuShouldOpen)
-    if (!openSubMenu || loadingContent) {
-        setOpenSubMenu(true)
+    if (!subMenuShouldOpen || loadingContent) {
+        // alert('oi')
         reverseAnimation(subMenuOpenAnimation, setSubMenuShouldOpen, 200)
     }
 
     const close = () => {
-        setOpenSubMenu(false)
         reverseAnimation(subMenuOpenAnimation, setSubMenuShouldOpen, 200)
     }
     const open = () => {
-        setOpenSubMenu(true)
         startAnimation(subMenuOpenAnimation, setSubMenuShouldOpen, 200)
     }
     return (
@@ -73,7 +74,7 @@ const SceneSubMenu = props => {
                     // startAnimation(subMenuOpenAnimation, setSubMenuShouldOpen)
                 }
             >
-                <Text>SubMenuTitle {JSON.stringify(openSubMenu)}</Text>
+                <Text>{subMenuShouldOpen ? subMenuTitleClosed : subMenuTitleOpen}</Text>
             </TouchableOpacity>
             <Animated.View
                 style={{

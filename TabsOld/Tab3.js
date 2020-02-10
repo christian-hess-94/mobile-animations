@@ -2,17 +2,25 @@ import React from 'react'
 import { View, Text, TouchableOpacity } from 'react-native'
 
 const Tab3 = () => {
-    const fadeToNext = () => {
-        Animated.timing(
-            changeTabAnim,
-            {
-                toValue: 1000,
-                duration: 1000,
-            }
-        ).start();
-    }
+    // alert('tab3')
     return (
         <View style={{ alignItems: 'center' }}>
+            <Text>Tab3</Text>
+            <Text>Tab3</Text>
+            <Text>Tab3</Text>
+            <Text>Tab3</Text>
+            <Text>Tab3</Text>
+            <Text>Tab3</Text>
+            <Text>Tab3</Text>
+            <Text>Tab3</Text>
+            <Text>Tab3</Text>
+            <Text>Tab3</Text>
+            <Text>Tab3</Text>
+            <Text>Tab3</Text>
+            <Text>Tab3</Text>
+            <Text>Tab3</Text>
+            <Text>Tab3</Text>
+            <Text>Tab3</Text>
             <Text>Tab3</Text>
         </View>
     )

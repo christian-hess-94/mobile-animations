@@ -1,118 +1,156 @@
 import React, { useState, useEffect } from 'react'
-import { Animated, View, Text, Dimensions, Easing } from 'react-native'
+import { Animated, View, Text, Dimensions, Easing, TouchableOpacity } from 'react-native'
 import Tab1 from './Tab1'
 import Tab2 from './Tab2'
 import Tab3 from './Tab3'
+import Row from '../utils/Row'
 import FadeInView from './FadeInView'
 
 const TabsOld = () => {
-    const [changeTabAnim, setChangeTabAnim] = useState(new Animated.Value(0))
-    const [revealPageContentAnim, setRevealPageContentAnim] = useState(new Animated.Value(1))
-    const [page, setPage] = useState(0)
-    const duration = 200
+    const [changeTabAnim] = useState(new Animated.Value(0))
+    const [revealTabContentAnim] = useState(new Animated.Value(1))
+    const [currentTab, setCurrentTab] = useState(0)
+    const duration = 500
     const easing = Easing.in()
-    const fadeToNext = () => {
+    const goToNextTab = (tabToGo) => {
         Animated.sequence([
+            Animated.parallel([
+                Animated.timing(
+                    revealTabContentAnim,
+                    {
+                        toValue: 0,
+                        easing,
+                        duration,
+                    }
+                ),
+                Animated.timing(
+                    changeTabAnim,
+                    {
+                        toValue: Dimensions.get('window').width * (tabToGo),
+                        easing,
+                        duration,
+                    }
+                )
+            ]),
             Animated.timing(
-                revealPageContentAnim,
-                {
-                    toValue: 0,
-                    easing,
-                    duration,
-                }
-            ),
-            Animated.timing(
-                changeTabAnim,
-                {
-                    toValue: Dimensions.get('window').width * (page + 1),
-                    easing,
-                    duration,
-                }
-            ),
-            Animated.timing(
-                revealPageContentAnim,
+                revealTabContentAnim,
                 {
                     toValue: 1,
                     easing,
-                    duration,
+                    duration: duration / 2,
                 }
             ),
         ]).start()
         setTimeout(() => {
-            setPage(page + 1)
+            setCurrentTab(tabToGo)
         }, duration * 2)
     }
 
-    const fadeToPrevious = () => {
+    const goToPreviousTab = (tabToGo) => {
         Animated.sequence([
+            Animated.parallel([
+                Animated.timing(
+                    revealTabContentAnim,
+                    {
+                        toValue: 0,
+                        easing,
+                        duration,
+                    }
+                ),
+                Animated.timing(
+                    changeTabAnim,
+                    {
+                        toValue: Dimensions.get('window').width * (tabToGo),
+                        easing,
+                        duration,
+                    }
+                )
+            ]),
             Animated.timing(
-                revealPageContentAnim,
-                {
-                    toValue: 0,
-                    easing,
-                    duration,
-                }
-            ),
-            Animated.timing(
-                changeTabAnim,
-                {
-                    toValue: Dimensions.get('window').width * (page - 1),
-                    easing,
-                    duration,
-                }
-            ),
-            Animated.timing(
-                revealPageContentAnim,
+                revealTabContentAnim,
                 {
                     toValue: 1,
                     easing,
-                    duration,
+                    duration: duration / 2,
                 }
             ),
         ]).start()
         setTimeout(() => {
-            setPage(page - 1)
+            setCurrentTab(tabToGo)
         }, duration * 2)
+    }
+    const changeTab = (tabToGo) => {
+        if (tabToGo > currentTab) {
+            goToNextTab(tabToGo)
+        } else if (tabToGo < currentTab) {
+            goToPreviousTab(tabToGo)
+        }
     }
     return (
         <View>
-            <Text style={{ textAlign: 'center' }}>{page + 1}/3</Text>
+            <Text style={{ textAlign: 'center' }}>{currentTab + 1}/{tabs.length}</Text>
             <View style={{ flexDirection: 'row' }}>
                 <FadeInView
                     // hasNextButton
-                    fadeToNext={fadeToNext}
-                    fadeToPrevious={fadeToPrevious}
+                    goToNextTab={goToNextTab}
+                    goToPreviousTab={goToPreviousTab}
                     changeTabAnim={changeTabAnim}
-                    revealPageContentAnim={revealPageContentAnim}
-                    page={page}
+                    revealTabContentAnim={revealTabContentAnim}
+                    currentTab={currentTab}
                 >
                     <Tab1 />
                 </FadeInView>
                 <FadeInView
                     // hasNextButton
                     // hasBackButton
-                    fadeToNext={fadeToNext}
-                    fadeToPrevious={fadeToPrevious}
+                    goToNextTab={goToNextTab}
+                    goToPreviousTab={goToPreviousTab}
                     changeTabAnim={changeTabAnim}
-                    revealPageContentAnim={revealPageContentAnim}
-                    page={page}
+                    revealTabContentAnim={revealTabContentAnim}
+                    currentTab={currentTab}
                 >
                     <Tab2 />
                 </FadeInView>
                 <FadeInView
                     // hasBackButton
-                    fadeToNext={fadeToNext}
-                    fadeToPrevious={fadeToPrevious}
+                    goToNextTab={goToNextTab}
+                    goToPreviousTab={goToPreviousTab}
                     changeTabAnim={changeTabAnim}
                     // hasSupportButton
                     // supportButtonText='Done'
                     // supportButtonPress={() => alert('DONE')}
-                    revealPageContentAnim={revealPageContentAnim}
-                    page={page}
+                    revealTabContentAnim={revealTabContentAnim}
+                    currentTab={currentTab}
                 >
                     <Tab3 />
                 </FadeInView>
             </View>
+            <Row>
+                <TouchableOpacity
+                    onPress={() => changeTab(0)}
+                    style={{
+                        flex: 1
+                    }}
+                >
+                    <Text style={{ textAlign: 'center' }}>Tab1</Text>
+                </TouchableOpacity>
+                <TouchableOpacity
+                    onPress={() => changeTab(1)}
+                    style={{
+                        flex: 1
+                    }}
+                >
+                    <Text style={{ textAlign: 'center' }}>Tab2</Text>
+                </TouchableOpacity>
+                <TouchableOpacity
+                    onPress={() => changeTab(2)}
+                    style={{
+                        flex: 1
+                    }}
+                >
+                    <Text style={{ textAlign: 'center' }}>Tab3</Text>
+                </TouchableOpacity>
+            </Row>
         </View>
     )
 }

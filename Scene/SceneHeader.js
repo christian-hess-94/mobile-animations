@@ -16,16 +16,25 @@ const SceneHeader = props => {
         hasHeader,
         hasSubMenu,
         loadingContent,
-        sceneTitle
+        sceneTitle,
+        drawerShouldAppear,
+        drawerItemsAnimation,
+        setDrawerItemsShouldAppear,
+        hasLeftButton,
+        hasRightButton,
+        leftButtonText,
+        rightButtonText
     } = props
 
     const [headerHeight, setHeaderHeight] = useState(0)
-
-    hasHeader && headerShouldAppear && startAnimation(headerAppearAnimation, setHeaderShouldAppear)
-    if (loadingContent && headerShouldAppear) {
+    const [onlyOnce, setOnlyOnce] = useState(true)
+    if (loadingContent && headerShouldAppear && onlyOnce) {
+        setOnlyOnce(false)
         reverseAnimation(headerAppearAnimation, setHeaderShouldAppear)
+        setTimeout(() => setOnlyOnce(true), 500)
     } else {
         startAnimation(headerAppearAnimation, setHeaderShouldAppear)
+        setTimeout(() => setOnlyOnce(true), 500)
     }
 
     return (
@@ -43,23 +52,26 @@ const SceneHeader = props => {
             <View>
                 <Row>
                     <Column flex={2}>
-                        <Row>
-                            <Column>
-                                <TouchableOpacity onPress={() => {
-                                    startAnimation(drawerAppearAnimation, setDrawerShouldAppear)
-                                }}>
-                                    <Text style={{ marginVertical: 20 }}>LeftButton</Text>
-                                </TouchableOpacity>
-                            </Column>
-                        </Row>
+                        {
+                            hasLeftButton &&
+                            <TouchableOpacity onPress={() => {
+                                startAnimation(drawerAppearAnimation, setDrawerShouldAppear)
+                                startAnimation(drawerItemsAnimation, setDrawerItemsShouldAppear, 650)
+                            }}>
+                                <Text style={{ marginVertical: 20 }}>{leftButtonText}</Text>
+                            </TouchableOpacity>
+                        }
                     </Column>
                     <Column flex={6}>
-                        <Text style={{ marginVertical: 20 }}>{sceneTitle}</Text>
+                        <Text style={{ marginVertical: 20, fontSize: 20, fontWeight: 'bold' }}>{sceneTitle}</Text>
                     </Column>
                     <Column flex={2}>
-                        <TouchableOpacity onPress={() => reverseAnimation(headerAppearAnimation, setHeaderShouldAppear)}>
-                            <Text style={{ marginVertical: 20 }}>RightButton</Text>
-                        </TouchableOpacity>
+                        {
+                            hasRightButton &&
+                            <TouchableOpacity onPress={() => reverseAnimation(headerAppearAnimation, setHeaderShouldAppear)}>
+                                <Text style={{ marginVertical: 20 }}>{rightButtonText}</Text>
+                            </TouchableOpacity>
+                        }
                     </Column>
                 </Row>
             </View>

@@ -1,45 +1,30 @@
 import React, { useState } from 'react'
 import { View, Text, ScrollView, Animated } from 'react-native'
+import Row from '../utils/Row'
+import FadeInView from '../TabsOld/FadeInView'
 
 const SceneTabs = props => {
     let {
-        startAnimation,
-        reverseAnimation,
-        tabAnimation,
-        setDrawerShouldAppear,
-        headerAppearAnimation,
-        setHeaderShouldAppear,
-        headerShouldAppear,
-        hasHeader,
-        hasSubMenu,
-        loadingContent,
-        vanishTab,
-        setTabAnimation,
-        setVanishTab,
         tabs,
         currentTab,
-        duration
     } = props
     return (
-        <Animated.View style={{
-            height: '100%',
-            opacity: tabAnimation.interpolate({
-                inputRange: [-1, 0, 1],
-                outputRange: [0, vanishTab ? 1 : 0, 0]
-            }),
-            right: tabAnimation.interpolate({
-                inputRange: [-1, 0, 1],
-                outputRange: [-1000, 0, 1000]
-            })
-        }}>
-            <Text style={{ textAlign: 'center' }}>
-                {vanishTab}
-            </Text>
-            <ScrollView style={{ marginHorizontal: 20, flex: 10 }}>
-                <Text style={{ textAlign: 'center' }}>{JSON.stringify(vanishTab)}</Text>
+        <View>
+            <Text style={{ textAlign: 'center' }}>{currentTab + 1}/{tabs.length}</Text>
+            <Row>
+                {
+                    tabs.map(tab =>
+                        <FadeInView {...props}>
+                            {tab}
+                        </FadeInView>)
+                }
+            </Row>
+            {/* <ScrollView style={{ marginHorizontal: 20, flex: 10 }}>
+                <View style={{ height: 20 }} />
                 {tabs[currentTab]}
-            </ScrollView>
-        </Animated.View>
+                <View style={{ height: 20 }} />
+            </ScrollView> */}
+        </View>
     )
 }
 
