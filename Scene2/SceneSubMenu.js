@@ -18,7 +18,7 @@ const SceneSubMenu = props => {
         subMenuBody,
         openSubMenu,
         setOpenSubMenu,
-        subMenuTitleClosed,
+        subMenuTitleClose,
         subMenuTitleOpen
     } = props
 
@@ -74,7 +74,7 @@ const SceneSubMenu = props => {
                     // startAnimation(subMenuOpenAnimation, setSubMenuShouldOpen)
                 }
             >
-                <Text>{subMenuShouldOpen ? subMenuTitleClosed : subMenuTitleOpen}</Text>
+                <Text>{subMenuShouldOpen ? subMenuTitleClose : subMenuTitleOpen}</Text>
             </TouchableOpacity>
             <Animated.View
                 style={{

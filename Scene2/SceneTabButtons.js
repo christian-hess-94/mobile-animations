@@ -48,7 +48,13 @@ const SceneTabButtons = props => {
                                 onPress={() => changeTab(tabNumber, tabTitle)}
                             >
                                 <Text
-                                    style={{ marginHorizontal: 10, marginVertical: 20, textAlign: 'center', fontSize: 15, fontWeight: currentTab === tabNumber ? 'bold' : 'normal' }}
+                                    style={{
+                                        marginHorizontal: 10,
+                                        marginVertical: 20,
+                                        textAlign: 'center',
+                                        fontSize: 15,
+                                        fontWeight: currentTab === tabNumber ? 'bold' : 'normal'
+                                    }}
                                 >
                                     {tabTitle}
                                 </Text>

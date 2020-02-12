@@ -2,6 +2,32 @@ import React from 'react'
 import { Animated, View, Text, Dimensions, TouchableOpacity } from 'react-native'
 
 const FadeInView = (props) => {
+    const {
+        headerAnimation,
+        subMenuAnimation,
+        loadingAnimation,
+        contentAnimation,
+        footerAnimation,
+        drawerAnimation,
+        drawerBackdropAnimation,
+        drawerItemsAnimation,
+        drawerHeaderAnimation,
+        changeTabAnimation,
+        revealTabContentAnimation,
+        tabAnimation,
+        duration,
+        currentTab,
+        tabs,
+
+        sceneStatus,
+
+        hasHeader,
+        hasSubMenu,
+        hasFooter,
+        hasTabs,
+        hasLeftButton,
+        hasRightButton,
+    } = props
     return (
         <>
             <Animated.View style={{
@@ -10,23 +36,14 @@ const FadeInView = (props) => {
 
                 // backgroundColor: 'powderblue',
                 transform: [{
-                    translateX: props.changeTabAnim.interpolate({
+                    translateX: changeTabAnimation.interpolate({
                         inputRange: [0, Dimensions.get('window').width],
                         outputRange: [0, -Dimensions.get('window').width]
                     })
                 }],
             }}>
                 <Animated.View style={{
-                    // transform: [
-                    //     {
-                    //         scale:
-                    //             props.revealTabContentAnim.interpolate({
-                    //                 inputRange: [0, 1],
-                    //                 outputRange: [0.6, 1]
-                    //             })
-                    //     }
-                    // ],
-                    opacity: props.revealTabContentAnim.interpolate({
+                    opacity: revealTabContentAnimation.interpolate({
                         inputRange: [0, 1],
                         outputRange: [0.3, 1]
                     })
@@ -40,7 +57,7 @@ const FadeInView = (props) => {
                             style={{ flex: 1 }}
                             onPress={() => props.fadeToPrevious()}>
                             <Animated.View style={{
-                                opacity: props.revealTabContentAnim,
+                                opacity: revealTabContentAnimation,
                                 alignItems: 'center',
                                 padding: 20,
                                 backgroundColor: 'transparent'
@@ -54,7 +71,7 @@ const FadeInView = (props) => {
                         <TouchableOpacity
                             style={{ flex: 1 }}
                             onPress={() => props.supportButtonPress()}><Animated.View style={{
-                                opacity: props.revealTabContentAnim,
+                                opacity: props.revealTabContentAnimation,
                                 alignItems: 'center',
                                 padding: 20,
                                 backgroundColor: 'lightgreen'
@@ -69,7 +86,7 @@ const FadeInView = (props) => {
                             style={{ flex: 1 }}
                             onPress={() => props.fadeToNext()}>
                             <Animated.View style={{
-                                opacity: props.revealTabContentAnim,
+                                opacity: props.revealTabContentAnimation,
                                 alignItems: 'center',
                                 padding: 20,
                                 backgroundColor: 'transparent'

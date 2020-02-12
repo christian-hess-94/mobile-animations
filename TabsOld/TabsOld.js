@@ -7,8 +7,8 @@ import Row from '../utils/Row'
 import FadeInView from './FadeInView'
 
 const TabsOld = () => {
-    const [changeTabAnim] = useState(new Animated.Value(0))
-    const [revealTabContentAnim] = useState(new Animated.Value(1))
+    const [changeTabAnimation] = useState(new Animated.Value(0))
+    const [revealTabContentAnimation] = useState(new Animated.Value(1))
     const [currentTab, setCurrentTab] = useState(0)
     const duration = 500
     const easing = Easing.in()
@@ -16,7 +16,7 @@ const TabsOld = () => {
         Animated.sequence([
             Animated.parallel([
                 Animated.timing(
-                    revealTabContentAnim,
+                    revealTabContentAnimation,
                     {
                         toValue: 0,
                         easing,
@@ -24,7 +24,7 @@ const TabsOld = () => {
                     }
                 ),
                 Animated.timing(
-                    changeTabAnim,
+                    changeTabAnimation,
                     {
                         toValue: Dimensions.get('window').width * (tabToGo),
                         easing,
@@ -33,7 +33,7 @@ const TabsOld = () => {
                 )
             ]),
             Animated.timing(
-                revealTabContentAnim,
+                revealTabContentAnimation,
                 {
                     toValue: 1,
                     easing,
@@ -50,7 +50,7 @@ const TabsOld = () => {
         Animated.sequence([
             Animated.parallel([
                 Animated.timing(
-                    revealTabContentAnim,
+                    revealTabContentAnimation,
                     {
                         toValue: 0,
                         easing,
@@ -58,7 +58,7 @@ const TabsOld = () => {
                     }
                 ),
                 Animated.timing(
-                    changeTabAnim,
+                    changeTabAnimation,
                     {
                         toValue: Dimensions.get('window').width * (tabToGo),
                         easing,
@@ -67,7 +67,7 @@ const TabsOld = () => {
                 )
             ]),
             Animated.timing(
-                revealTabContentAnim,
+                revealTabContentAnimation,
                 {
                     toValue: 1,
                     easing,
@@ -94,8 +94,8 @@ const TabsOld = () => {
                     // hasNextButton
                     goToNextTab={goToNextTab}
                     goToPreviousTab={goToPreviousTab}
-                    changeTabAnim={changeTabAnim}
-                    revealTabContentAnim={revealTabContentAnim}
+                    changeTabAnimation={changeTabAnimation}
+                    revealTabContentAnimation={revealTabContentAnimation}
                     currentTab={currentTab}
                 >
                     <Tab1 />
@@ -105,8 +105,8 @@ const TabsOld = () => {
                     // hasBackButton
                     goToNextTab={goToNextTab}
                     goToPreviousTab={goToPreviousTab}
-                    changeTabAnim={changeTabAnim}
-                    revealTabContentAnim={revealTabContentAnim}
+                    changeTabAnimation={changeTabAnimation}
+                    revealTabContentAnimation={revealTabContentAnimation}
                     currentTab={currentTab}
                 >
                     <Tab2 />
@@ -115,11 +115,11 @@ const TabsOld = () => {
                     // hasBackButton
                     goToNextTab={goToNextTab}
                     goToPreviousTab={goToPreviousTab}
-                    changeTabAnim={changeTabAnim}
+                    changeTabAnimation={changeTabAnimation}
                     // hasSupportButton
                     // supportButtonText='Done'
                     // supportButtonPress={() => alert('DONE')}
-                    revealTabContentAnim={revealTabContentAnim}
+                    revealTabContentAnimation={revealTabContentAnimation}
                     currentTab={currentTab}
                 >
                     <Tab3 />
