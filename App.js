@@ -24,7 +24,7 @@ export default class App extends Component {
 
     tabs: [
       {
-        title: 'Tab1',
+        title: 'Tab1 de teste',
         content: <Tab1 />,
         icon: require('./images/menu.png')
       },
