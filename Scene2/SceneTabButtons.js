@@ -4,7 +4,7 @@ import { View, Text, ScrollView, TouchableOpacity } from 'react-native'
 const SceneTabButtons = props => {
     let {
         tabTitles,
-        currentTab,
+        tabCurrent,
         setSceneTitle,
         goToNextTab,
         goToPreviousTab
@@ -12,9 +12,9 @@ const SceneTabButtons = props => {
     let minimumTabs = 6
     const changeTab = (tabNumber, tabTitle) => {
         setSceneTitle(tabTitle)
-        if (tabNumber > currentTab) {
+        if (tabNumber > tabCurrent) {
             goToNextTab(tabNumber)
-        } else if (tabNumber < currentTab) {
+        } else if (tabNumber < tabCurrent) {
             goToPreviousTab(tabNumber)
         }
     }
@@ -30,7 +30,7 @@ const SceneTabButtons = props => {
                                 onPress={() => changeTab(tabNumber, tabTitle)}
                             >
                                 <Text
-                                    style={{ textAlign: 'center', fontSize: 20 - tabTitles.length, fontWeight: currentTab === tabNumber ? 'bold' : 'normal' }}
+                                    style={{ textAlign: 'center', fontSize: 20 - tabTitles.length, fontWeight: tabCurrent === tabNumber ? 'bold' : 'normal' }}
                                 >
                                     {tabTitle}
                                 </Text>
@@ -53,7 +53,7 @@ const SceneTabButtons = props => {
                                         marginVertical: 20,
                                         textAlign: 'center',
                                         fontSize: 15,
-                                        fontWeight: currentTab === tabNumber ? 'bold' : 'normal'
+                                        fontWeight: tabCurrent === tabNumber ? 'bold' : 'normal'
                                     }}
                                 >
                                     {tabTitle}

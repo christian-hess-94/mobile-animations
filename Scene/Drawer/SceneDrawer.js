@@ -14,7 +14,7 @@ const SceneDrawer = props => {
         drawerItemsAnimation,
         drawerHeaderAnimation,
         duration,
-        menuItems,
+        drawerItems,
 
         sceneStatus,
 
@@ -87,7 +87,7 @@ const SceneDrawer = props => {
                     <FlatList
                         style={{ width: '100%' }}
                         keyExtractor={(item, index) => index.toString()}
-                        data={menuItems}
+                        data={drawerItems}
                         renderItem={renderItem} />
                 </View>
             </Animated.View>

@@ -1,10 +1,10 @@
 import React from 'react'
-import { View, Text, TouchableOpacity } from 'react-native'
+import { ScrollView, View, Text, TouchableOpacity } from 'react-native'
 
 const Tab1 = () => {
     // alert('tab1')
     return (
-        <View style={{ alignItems: 'center' }}>
+        <ScrollView>
             <Text>Tab1</Text>
             <Text>Tab1</Text>
             <Text>Tab1</Text>
@@ -18,7 +18,40 @@ const Tab1 = () => {
             <Text>Tab1</Text>
             <Text>Tab1</Text>
             <Text>Tab1</Text>
-        </View>
+            <Text>Tab1</Text>
+            <Text>Tab1</Text>
+            <Text>Tab1</Text>
+            <Text>Tab1</Text>
+            <Text>Tab1</Text>
+            <Text>Tab1</Text>
+            <Text>Tab1</Text>
+            <Text>Tab1</Text>
+            <Text>Tab1</Text>
+            <Text>Tab1</Text>
+            <Text>Tab1</Text>
+            <Text>Tab1</Text>
+            <Text>Tab1</Text>
+            <Text>Tab1</Text>
+            <Text>Tab1</Text>
+            <Text>Tab1</Text>
+            <Text>Tab1</Text>
+            <Text>Tab1</Text>
+            <Text>Tab1</Text>
+            <Text>Tab1</Text>
+            <Text>Tab1</Text>
+            <Text>Tab1</Text>
+            <Text>Tab1</Text>
+            <Text>Tab1</Text>
+            <Text>Tab1</Text>
+            <Text>Tab1</Text>
+            <Text>Tab1</Text>
+            <Text>Tab1</Text>
+            <Text>Tab1</Text>
+            <Text>Tab1</Text>
+            <Text>Tab1</Text>
+            <Text>Tab1</Text>
+            <Text>Final Tab1</Text>
+        </ScrollView>
     )
 }
 

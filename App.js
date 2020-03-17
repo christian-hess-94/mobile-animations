@@ -3,6 +3,7 @@
 import React, { Component } from 'react'
 import { Text, View, Animated, TouchableOpacity, Dimensions } from 'react-native'
 import Scene from './Scene/Scene'
+import Tab1 from './TabsOld/Tab1'
 
 export default class App extends Component {
   state = {
@@ -24,7 +25,7 @@ export default class App extends Component {
     tabs: [
       {
         title: 'Tab1',
-        content: <Text>Tab1</Text>,
+        content: <Tab1 />,
         icon: require('./images/menu.png')
       },
       {
@@ -58,8 +59,8 @@ export default class App extends Component {
         icon: undefined
       }
     ],
-    currentTab: 0,
-    menuItems: [
+    tabCurrent: 0,
+    drawerItems: [
       {
         title: 'Item 1',
         pressed: () => {
@@ -200,12 +201,12 @@ export default class App extends Component {
       revealTabContentAnimation,
       changeTabAnimation,
       duration,
-      currentTab
+      tabCurrent
     } = this.state
-    this.setState({ currentTab: tabNumber })
-    if (tabNumber > currentTab) {
+    this.setState({ tabCurrent: tabNumber })
+    if (tabNumber > tabCurrent) {
       this.goToNextTab(tabNumber)
-    } else if (tabNumber < currentTab) {
+    } else if (tabNumber < tabCurrent) {
       this.goToPreviousTab(tabNumber)
     }
   }
@@ -225,7 +226,7 @@ export default class App extends Component {
       revealTabContentAnimation,
       changeTabAnimation,
       duration,
-      currentTab
+      tabCurrent
     } = this.state
     Animated.sequence([
       Animated.parallel([
@@ -269,7 +270,7 @@ export default class App extends Component {
       changeTabAnimation,
       tabAnimation,
       duration,
-      currentTab
+      tabCurrent
     } = this.state
     Animated.sequence([
       Animated.parallel([
@@ -327,8 +328,8 @@ export default class App extends Component {
       tabAnimation,
       duration,
       tabs,
-      currentTab,
-      menuItems,
+      tabCurrent,
+      drawerItems,
 
       sceneStatus,
     } = this.state
@@ -363,19 +364,18 @@ export default class App extends Component {
           hasSubMenu
           hasFooter
           footerBody={
-            <Text style={{ textAlign: 'center' }}>{currentTab + 1}/{tabs.length}</Text>
+            <Text style={{ textAlign: 'center' }}>{tabCurrent + 1}/{tabs.length}</Text>
           }
           hasTabs
           tabs={tabs}
-          menuItems={menuItems}
           drawerTitle='Olá Christian'
-          currentTab={currentTab}
+          tabCurrent={tabCurrent}
           changeTab={this.changeTab}
           hasLeftButton
           leftButtonPressed={this.openMenu}
           rightButtonPressed={this.startLoadingContent}
           hasRightButton
-          menuItems={menuItems}
+          drawerItems={drawerItems}
           sceneContent={
             <>
               <TouchableOpacity onPress={() => this.startLoadingContent()}>
@@ -408,7 +408,7 @@ export default class App extends Component {
 //   console.disableYellowBox = true
 //   const [loadingContent, setLoadingContent] = useState(false)
 //   const [openSubMenu, setOpenSubMenu] = useState(false)
-//   const [currentTab, setCurrentTab] = useState(0)
+//   const [tabCurrent, setCurrentTab] = useState(0)
 //   const loadContent = () => {
 //     setLoadingContent(true)
 //     setTimeout(() => { setLoadingContent(false) }, 3000)
@@ -469,7 +469,7 @@ export default class App extends Component {
 //         /////////
 //         hasFooter
 //         footerBody={
-//           < Text > {currentTab}</Text >
+//           < Text > {tabCurrent}</Text >
 //         }
 //         //////////
 //         hasTabs
@@ -488,7 +488,7 @@ export default class App extends Component {
 //             // <Text>Tab8</Text>,
 //             // <Text>Tab9</Text>,
 //           ]}
-//         currentTab={currentTab}
+//         tabCurrent={tabCurrent}
 //         setCurrentTab={setCurrentTab}
 //         ///////////
 //         sceneBody={

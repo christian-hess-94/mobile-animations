@@ -8,7 +8,7 @@
     "start": "react-native start",
     "test": "jest",
     "lint": "eslint .",
-    "(*)android-full-debug-build": "npm run android-debug-bundle && npm run android-debug-clean && npm run android-debug-apk && cd .\\android\\app\\build\\outputs\\apk\\debug && rename app-debug.apk animation.apk && npm run android-debug-apk-folder",
+    "android-full-debug-build": "npm run android-debug-bundle && npm run android-debug-clean && npm run android-debug-apk && cd .\\android\\app\\build\\outputs\\apk\\debug && rename app-debug.apk animation.apk && npm run android-debug-apk-folder",
     "android-debug-bundle": "react-native bundle --platform android --dev false --entry-file index.js --bundle-output android/app/src/main/assets/index.android.bundle --assets-dest android/app/src/main/res",
     "android-debug-clean": "cd android && gradlew clean",
     "android-debug-apk": "cd android && gradlew assembleDebug",

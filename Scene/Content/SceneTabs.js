@@ -16,7 +16,7 @@ const SceneTabs = props => {
         drawerHeaderAnimation,
         tabAnimation,
         duration,
-        currentTab,
+        tabCurrent,
         tabs,
 
         sceneStatus,

@@ -16,7 +16,7 @@ const FadeInView = (props) => {
         revealTabContentAnimation,
         tabAnimation,
         duration,
-        currentTab,
+        tabCurrent,
         tabs,
 
         sceneStatus,

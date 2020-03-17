@@ -14,7 +14,7 @@ const SceneTabControls = props => {
         drawerHeaderAnimation,
         duration,
         tabs,
-        currentTab,
+        tabCurrent,
         changeTab,
 
         sceneStatus,
@@ -42,17 +42,17 @@ const SceneTabControls = props => {
                                     >
                                         <Image source={tab.icon ? tab.icon : require('../../images/missing_icon.png')}
                                             style={{
-                                                tintColor: currentTab === tabNumber ? 'white' : 'lightgray',
+                                                tintColor: tabCurrent === tabNumber ? 'white' : 'lightgray',
                                                 alignSelf: 'center',
-                                                height: currentTab === tabNumber ? 30 : 25,
-                                                width: currentTab === tabNumber ? 30 : 25,
+                                                height: tabCurrent === tabNumber ? 30 : 25,
+                                                width: tabCurrent === tabNumber ? 30 : 25,
                                             }} />
                                         <Text
                                             style={{
-                                                color: currentTab === tabNumber ? 'white' : 'lightgray',
+                                                color: tabCurrent === tabNumber ? 'white' : 'lightgray',
                                                 textAlign: 'center',
                                                 fontSize: 20 - tabs.length,
-                                                fontWeight: currentTab === tabNumber ? 'bold' : 'normal'
+                                                fontWeight: tabCurrent === tabNumber ? 'bold' : 'normal'
                                             }}
                                         >
                                             {tab.title}
@@ -76,17 +76,17 @@ const SceneTabControls = props => {
                                 >
                                     <Image source={tab.icon ? tab.icon : require('../../images/missing_icon.png')}
                                         style={{
-                                            tintColor: currentTab === tabNumber ? 'white' : 'lightgray',
+                                            tintColor: tabCurrent === tabNumber ? 'white' : 'lightgray',
                                             alignSelf: 'center',
-                                            height: currentTab === tabNumber ? 30 : 25,
-                                            width: currentTab === tabNumber ? 30 : 25,
+                                            height: tabCurrent === tabNumber ? 30 : 25,
+                                            width: tabCurrent === tabNumber ? 30 : 25,
                                         }} />
                                     <Text
                                         style={{
-                                            color: currentTab === tabNumber ? 'white' : 'lightgray',
+                                            color: tabCurrent === tabNumber ? 'white' : 'lightgray',
                                             textAlign: 'center',
                                             fontSize: 20,
-                                            fontWeight: currentTab === tabNumber ? 'bold' : 'normal'
+                                            fontWeight: tabCurrent === tabNumber ? 'bold' : 'normal'
                                         }}
                                     >
                                         {tab.title}

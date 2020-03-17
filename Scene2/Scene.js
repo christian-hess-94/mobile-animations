@@ -30,7 +30,7 @@ const Scene = props => {
     //TABS
     const [changeTabAnimation] = useState(new Animated.Value(0))
     const [revealTabContentAnimation] = useState(new Animated.Value(1))
-    const [currentTab, setCurrentTab] = useState(0)
+    const [tabCurrent, setCurrentTab] = useState(0)
     //DRAWER
     const [drawerShouldAppear, setDrawerShouldAppear] = useState(false)
     const [drawerAppearAnimation] = useState(new Animated.Value(0))
@@ -161,7 +161,7 @@ const Scene = props => {
                     footerShouldAppear={footerShouldAppear}
                     sceneTitle={sceneTitle}
                     drawerItemsShouldAppear={drawerItemsShouldAppear}
-                    currentTab={currentTab}
+                    tabCurrent={tabCurrent}
                     goToNextTab={goToNextTab}
                     goToPreviousTab={goToPreviousTab}
 
@@ -236,7 +236,7 @@ const Scene = props => {
                                     footerShouldAppear={footerShouldAppear}
                                     sceneTitle={sceneTitle}
                                     drawerItemsShouldAppear={drawerItemsShouldAppear}
-                                    currentTab={currentTab}
+                                    tabCurrent={tabCurrent}
                                     goToNextTab={goToNextTab}
                                     goToPreviousTab={goToPreviousTab}
 
@@ -282,7 +282,7 @@ const Scene = props => {
                     footerShouldAppear={footerShouldAppear}
                     sceneTitle={sceneTitle}
                     drawerItemsShouldAppear={drawerItemsShouldAppear}
-                    currentTab={currentTab}
+                    tabCurrent={tabCurrent}
                     goToNextTab={goToNextTab}
                     goToPreviousTab={goToPreviousTab}
 
@@ -317,7 +317,7 @@ const Scene = props => {
                 footerShouldAppear={footerShouldAppear}
                 sceneTitle={sceneTitle}
                 drawerItemsShouldAppear={drawerItemsShouldAppear}
-                currentTab={currentTab}
+                tabCurrent={tabCurrent}
                 goToNextTab={goToNextTab}
                 goToPreviousTab={goToPreviousTab}
 

@@ -6,11 +6,11 @@ import FadeInView from '../TabsOld/FadeInView'
 const SceneTabs = props => {
     let {
         tabs,
-        currentTab,
+        tabCurrent,
     } = props
     return (
         <View>
-            <Text style={{ textAlign: 'center' }}>{currentTab + 1}/{tabs.length}</Text>
+            <Text style={{ textAlign: 'center' }}>{tabCurrent + 1}/{tabs.length}</Text>
             <Row>
                 {
                     tabs.map(tab =>
@@ -21,7 +21,7 @@ const SceneTabs = props => {
             </Row>
             {/* <ScrollView style={{ marginHorizontal: 20, flex: 10 }}>
                 <View style={{ height: 20 }} />
-                {tabs[currentTab]}
+                {tabs[tabCurrent]}
                 <View style={{ height: 20 }} />
             </ScrollView> */}
         </View>

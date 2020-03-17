@@ -9,7 +9,7 @@ import FadeInView from './FadeInView'
 const TabsOld = () => {
     const [changeTabAnimation] = useState(new Animated.Value(0))
     const [revealTabContentAnimation] = useState(new Animated.Value(1))
-    const [currentTab, setCurrentTab] = useState(0)
+    const [tabCurrent, setCurrentTab] = useState(0)
     const duration = 500
     const easing = Easing.in()
     const goToNextTab = (tabToGo) => {
@@ -80,15 +80,15 @@ const TabsOld = () => {
         }, duration * 2)
     }
     const changeTab = (tabToGo) => {
-        if (tabToGo > currentTab) {
+        if (tabToGo > tabCurrent) {
             goToNextTab(tabToGo)
-        } else if (tabToGo < currentTab) {
+        } else if (tabToGo < tabCurrent) {
             goToPreviousTab(tabToGo)
         }
     }
     return (
         <View>
-            <Text style={{ textAlign: 'center' }}>{currentTab + 1}/{tabs.length}</Text>
+            <Text style={{ textAlign: 'center' }}>{tabCurrent + 1}/{tabs.length}</Text>
             <View style={{ flexDirection: 'row' }}>
                 <FadeInView
                     // hasNextButton
@@ -96,7 +96,7 @@ const TabsOld = () => {
                     goToPreviousTab={goToPreviousTab}
                     changeTabAnimation={changeTabAnimation}
                     revealTabContentAnimation={revealTabContentAnimation}
-                    currentTab={currentTab}
+                    tabCurrent={tabCurrent}
                 >
                     <Tab1 />
                 </FadeInView>
@@ -107,7 +107,7 @@ const TabsOld = () => {
                     goToPreviousTab={goToPreviousTab}
                     changeTabAnimation={changeTabAnimation}
                     revealTabContentAnimation={revealTabContentAnimation}
-                    currentTab={currentTab}
+                    tabCurrent={tabCurrent}
                 >
                     <Tab2 />
                 </FadeInView>
@@ -120,7 +120,7 @@ const TabsOld = () => {
                     // supportButtonText='Done'
                     // supportButtonPress={() => alert('DONE')}
                     revealTabContentAnimation={revealTabContentAnimation}
-                    currentTab={currentTab}
+                    tabCurrent={tabCurrent}
                 >
                     <Tab3 />
                 </FadeInView>
