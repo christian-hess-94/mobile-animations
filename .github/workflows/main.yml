@@ -15,6 +15,7 @@ jobs:
     steps:
     # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
     - uses: actions/checkout@v2
-    - name: CreateDebugAPK
+    - name: Install
       run: npm install --save
+    - name: CreateDebugAPK
       run: npm run android-full-debug-build
