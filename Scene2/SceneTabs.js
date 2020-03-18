@@ -13,8 +13,8 @@ const SceneTabs = props => {
             <Text style={{ textAlign: 'center' }}>{tabCurrent + 1}/{tabs.length}</Text>
             <Row>
                 {
-                    tabs.map(tab =>
-                        <FadeInView {...props}>
+                    tabs.map((tab, tabNumber) =>
+                        <FadeInView key={tabNumber} {...props}>
                             {tab}
                         </FadeInView>)
                 }
