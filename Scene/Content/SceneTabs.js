@@ -31,8 +31,8 @@ const SceneTabs = props => {
     return (
         <Row>
             {
-                tabs.map(tab =>
-                    <FadeInView {...props}>
+                tabs.map((tab, tabNumber) =>
+                    <FadeInView key={tabNumber} {...props}>
                         {tab.content}
                     </FadeInView>)
             }

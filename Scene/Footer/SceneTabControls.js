@@ -36,8 +36,8 @@ const SceneTabControls = props => {
                             tabs.map(
                                 (tab, tabNumber) => (
                                     <TouchableOpacity
-                                        style={{ flex: 1, marginHorizontal: 10, marginVertical: 10 }}
                                         key={tabNumber}
+                                        style={{ flex: 1, marginHorizontal: 10, marginVertical: 10 }}
                                         onPress={() => changeTab(tabNumber, tab.title)}
                                     >
                                         <Image source={tab.icon ? tab.icon : require('../../images/missing_icon.png')}
@@ -67,11 +67,11 @@ const SceneTabControls = props => {
                         {
                             tabs.map((tab, tabNumber) => (
                                 <TouchableOpacity
+                                    key={tabNumber}
                                     style={{
                                         marginHorizontal: 20,
                                         marginVertical: 10,
                                     }}
-                                    key={tabNumber}
                                     onPress={() => changeTab(tabNumber, tab.title)}
                                 >
                                     <Image source={tab.icon ? tab.icon : require('../../images/missing_icon.png')}
