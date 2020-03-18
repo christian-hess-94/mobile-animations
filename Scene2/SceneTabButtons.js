@@ -25,8 +25,8 @@ const SceneTabButtons = props => {
                     tabTitles.map(
                         (tabTitle, tabNumber) =>
                             <TouchableOpacity
-                                style={{ flex: 1, marginHorizontal: 10, marginVertical: 20 }}
                                 key={tabNumber}
+                                style={{ flex: 1, marginHorizontal: 10, marginVertical: 20 }}
                                 onPress={() => changeTab(tabNumber, tabTitle)}
                             >
                                 <Text
@@ -41,24 +41,22 @@ const SceneTabButtons = props => {
             :
             <ScrollView horizontal style={{ backgroundColor: 'green', width: '100%' }}>
                 {
-                    tabTitles.map(
-                        (tabTitle, tabNumber) =>
-                            <TouchableOpacity
-                                key={tabNumber}
-                                onPress={() => changeTab(tabNumber, tabTitle)}
-                            >
-                                <Text
-                                    style={{
-                                        marginHorizontal: 10,
-                                        marginVertical: 20,
-                                        textAlign: 'center',
-                                        fontSize: 15,
-                                        fontWeight: tabCurrent === tabNumber ? 'bold' : 'normal'
-                                    }}
-                                >
-                                    {tabTitle}
-                                </Text>
-                            </TouchableOpacity>
+                    tabTitles.map((tabTitle, tabNumber) => <TouchableOpacity
+                        key={tabNumber}
+                        onPress={() => changeTab(tabNumber, tabTitle)}
+                    >
+                        <Text
+                            style={{
+                                marginHorizontal: 10,
+                                marginVertical: 20,
+                                textAlign: 'center',
+                                fontSize: 15,
+                                fontWeight: tabCurrent === tabNumber ? 'bold' : 'normal'
+                            }}
+                        >
+                            {tabTitle}
+                        </Text>
+                    </TouchableOpacity>
                     )
                 }
             </ScrollView>
