@@ -5,7 +5,7 @@ const Tab1 = () => {
     // alert('tab1')
     return (
         <ScrollView>
-            <Text>{Config.API_HOST}</Text>
+            <Text>{Config.API_HOST} asdasdsdasddasd</Text>
         </ScrollView>
     )
 }
