@@ -1,56 +1,11 @@
 import React from 'react'
 import { ScrollView, View, Text, TouchableOpacity } from 'react-native'
-
+import Config from "react-native-config";
 const Tab1 = () => {
     // alert('tab1')
     return (
         <ScrollView>
-            <Text>Tab1</Text>
-            <Text>Tab1</Text>
-            <Text>Tab1</Text>
-            <Text>Tab1</Text>
-            <Text>Tab1</Text>
-            <Text>Tab1</Text>
-            <Text>Tab1</Text>
-            <Text>Tab1</Text>
-            <Text>Tab1</Text>
-            <Text>Tab1</Text>
-            <Text>Tab1</Text>
-            <Text>Tab1</Text>
-            <Text>Tab1</Text>
-            <Text>Tab1</Text>
-            <Text>Tab1</Text>
-            <Text>Tab1</Text>
-            <Text>Tab1</Text>
-            <Text>Tab1</Text>
-            <Text>Tab1</Text>
-            <Text>Tab1</Text>
-            <Text>Tab1</Text>
-            <Text>Tab1</Text>
-            <Text>Tab1</Text>
-            <Text>Tab1</Text>
-            <Text>Tab1</Text>
-            <Text>Tab1</Text>
-            <Text>Tab1</Text>
-            <Text>Tab1</Text>
-            <Text>Tab1</Text>
-            <Text>Tab1</Text>
-            <Text>Tab1</Text>
-            <Text>Tab1</Text>
-            <Text>Tab1</Text>
-            <Text>Tab1</Text>
-            <Text>Tab1</Text>
-            <Text>Tab1</Text>
-            <Text>Tab1</Text>
-            <Text>Tab1</Text>
-            <Text>Tab1</Text>
-            <Text>Tab1</Text>
-            <Text>Tab1</Text>
-            <Text>Tab1</Text>
-            <Text>Tab1</Text>
-            <Text>Tab1</Text>
-            <Text>Tab1</Text>
-            <Text>Final Tab1</Text>
+            <Text>{Config.API_HOST}</Text>
         </ScrollView>
     )
 }
