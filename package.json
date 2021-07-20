@@ -17,7 +17,7 @@
   "dependencies": {
     "prop-types": "^15.7.2",
     "react": "16.9.0",
-    "react-native": "0.61.5",
+    "react-native": "0.62.3",
     "react-native-accordion": "^1.0.1",
     "styled-components": "^5.0.1"
   },
